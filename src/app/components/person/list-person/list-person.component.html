@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-11">
+      <h2>Lista de clientes</h2>
+    </div>
+    <div class="col-2">
+      <button [routerLink]="['register-person']" class="btn btn-success">Agregar cliente</button>
+    </div>
+  </div>
+</div>
+<h1></h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-11">
+      <table class="table table-striped">
+        <thead class="table-secondary">
+          <tr>
+            <th>Id cliente</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let Person of persons | slice:desde:hasta">
+            <td>{{Person.id_person}}</td>
+            <td>{{Person.name}}</td>
+            <td>{{Person.surname}}</td>
+            <td>{{Person.email}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <mat-paginator [length]="persons?.length"
+                     [pageSize]="pageSize"
+                     aria-label="Select page"
+                     (page)="cambiarPagina($event)">
+      </mat-paginator>
+
+    </div>
+  </div>
+</div>

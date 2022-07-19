@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-11">
+      <h2>Lista de direcciones</h2>
+    </div>
+    <div class="col-2">
+      <button (click)="agregarBoton()"class="btn btn-success">Agregar Dirección</button>
+    </div>
+  </div>
+</div>
+<h1></h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-11">
+      <table class="table table-striped">
+        <thead class="table-secondary">
+          <tr>
+            <th>Id Dirección</th>
+            <th>Dirección</th>
+            <th>Fecha</th>
+            <th>Cliente</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let Direction of directions | slice:desde:hasta">
+            <td>{{Direction.id_direction}}</td>
+            <td>{{Direction.direction}}</td>
+            <td>{{Direction.date}}</td>
+            <td>{{Direction.id_person.email}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <mat-paginator [length]="directions?.length"
+                     [pageSize]="pageSize"
+                     aria-label="Select page"
+                     (page)="cambiarPagina($event)">
+      </mat-paginator>
+
+    </div>
+  </div>
+</div>

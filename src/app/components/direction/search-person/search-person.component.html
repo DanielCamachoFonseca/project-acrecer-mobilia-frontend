@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h1></h1>
+      <h3 class="text-center">Consultar clientes</h3>
+      <form (ngSubmit)="search()">
+        <div class="form-group">
+          <label>Nombre: </label>
+          <input type="text" class="form-control" id="name" [(ngModel)]="direction.id_person.name" name="name" placeholder="Digite el nombre">
+        </div>
+        <div class="form-group">
+          <label>Apellidos: </label>
+          <input type="text" class="form-control" id="surname" [(ngModel)]="direction.id_person.surname" name="surname" placeholder="Digite apellidos">
+        </div>
+        <div class="form-group">
+          <label>Email: </label>
+          <input type="text" class="form-control" id="email" [(ngModel)]="direction.id_person.email" name="email" placeholder="Digite el email">
+        </div>
+        <h1></h1>
+        <button class="btn btn-success">Consultar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-11">
+      <table class="table table-striped" *ngIf="directions.length > 0">
+        <thead class="table-secondary">
+          <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Email</th>
+            <th>Direccion</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let Direction of directions | slice:desde:hasta">
+            <td>{{Direction.id_person.name}}</td>
+            <td>{{Direction.id_person.surname}}</td>
+            <td>{{Direction.id_person.email}}</td>
+            <td>{{Direction.direction}}</td>
+            <td>{{Direction.date}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <mat-paginator [length]="directions?.length"
+                     [pageSize]="pageSize"
+                     aria-label="Select page"
+                     (page)="cambiarPagina($event)">
+      </mat-paginator>
+
+    </div>
+  </div>
+</div>
